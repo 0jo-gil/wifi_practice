@@ -66,94 +66,94 @@
     </div>
 
 
-<%--    <script>--%>
-<%--        const locationBtnEl = document.querySelector('.location-btn');--%>
-<%--        const searchBtnEl = document.querySelector('.search-btn');--%>
-<%--        const locationInfoForm = document.querySelector('.location-info-form');--%>
+    <script>
+        const locationBtnEl = document.querySelector('.location-btn');
+        const searchBtnEl = document.querySelector('.search-btn');
+        const locationInfoForm = document.querySelector('.location-info-form');
 
-<%--        const geolocation = navigator.geolocation;--%>
-
-
-<%--        const locationValue = ({coords}) => {--%>
-<%--            let lat = coords.latitude;--%>
-<%--            let lnt = coords.longitude;--%>
-
-<%--            setInputValue('lat', lat);--%>
-<%--            setInputValue('lnt', lnt).then(() => {--%>
-<%--                console.log('완료');--%>
-
-<%--                document.querySelector('.modal-wrap').remove();--%>
-<%--            });--%>
-<%--        }--%>
-
-<%--        const setInputValue = async (key, value) => {--%>
-<%--            const element = document.querySelector("input[name="+ key +"]");--%>
-<%--            element.value = value;--%>
-<%--        }--%>
-
-<%--        const getLocation = async (e) => {--%>
-<%--            e.preventDefault();--%>
-<%--            if(!geolocation) throw "위치정보 지원 불가!";--%>
-<%--            await geolocation.getCurrentPosition(locationValue);--%>
-<%--        }--%>
-
-<%--        const loadingModal = (title) => {--%>
-<%--            console.log(title);--%>
-<%--            const element = `--%>
-<%--                <div class="modal-wrap">--%>
-<%--                    <h1>LOADING...</h1>--%>
-<%--                </div>--%>
-<%--            `--%>
-
-<%--            document.body.insertAdjacentHTML('beforeend', element);--%>
-<%--        }--%>
+        const geolocation = navigator.geolocation;
 
 
-<%--        // 위치정보 가져오기 이벤트--%>
-<%--        locationBtnEl.addEventListener('click', (e) => {--%>
-<%--            getLocation(e);--%>
-<%--            loadingModal('사용자 위치정보');--%>
-<%--        });--%>
+        const locationValue = ({coords}) => {
+            let lat = coords.latitude;
+            let lnt = coords.longitude;
 
-<%--        const onSubmitHandler = () => {--%>
-<%--            const data = new FormData(locationInfoForm);--%>
+            setInputValue('lat', lat);
+            setInputValue('lnt', lnt).then(() => {
+                console.log('완료');
 
-<%--            let latValue = data.get('lat');--%>
-<%--            let lntValue = data.get('lnt');--%>
+                document.querySelector('.modal-wrap').remove();
+            });
+        }
 
-<%--            let params = "lat="+latValue+"&lnt="+lntValue;--%>
+        const setInputValue = async (key, value) => {
+            const element = document.querySelector("input[name="+ key +"]");
+            element.value = value;
+        }
 
-<%--            callPostHistory(params);--%>
-<%--        }--%>
+        const getLocation = async (e) => {
+            e.preventDefault();
+            if(!geolocation) throw "위치정보 지원 불가!";
+            await geolocation.getCurrentPosition(locationValue);
+        }
 
+        const loadingModal = (title) => {
+            console.log(title);
+            const element = `
+                <div class="modal-wrap">
+                    <h1>LOADING...</h1>
+                </div>
+            `
 
-<%--        const callPostHistory = (params) => {--%>
-<%--            const xhr = new XMLHttpRequest();--%>
-
-<%--            xhr.open('POST', "history?"+params, true);--%>
-
-<%--            xhr.onreadystatechange = (e) => {--%>
-
-<%--                const {target} = e;--%>
-
-<%--                if(target.readyState === XMLHttpRequest.DONE){--%>
-<%--                    console.log(e);--%>
-<%--                    console.log('시작');--%>
-<%--                }--%>
-<%--            }--%>
-
-<%--            xhr.send();--%>
-<%--        }--%>
+            document.body.insertAdjacentHTML('beforeend', element);
+        }
 
 
-<%--        searchBtnEl.addEventListener('click', (e) => {--%>
-<%--            // e.preventDefault();--%>
-<%--            onSubmitHandler();--%>
-<%--        })--%>
+        // 위치정보 가져오기 이벤트
+        locationBtnEl.addEventListener('click', (e) => {
+            getLocation(e);
+            loadingModal('사용자 위치정보');
+        });
+        //
+        // const onSubmitHandler = () => {
+        //     const data = new FormData(locationInfoForm);
+        //
+        //     let latValue = data.get('lat');
+        //     let lntValue = data.get('lnt');
+        //
+        //     let params = "lat="+latValue+"&lnt="+lntValue;
+        //
+        //     callPostHistory(params);
+        // }
+        //
+        //
+        // const callPostHistory = (params) => {
+        //     const xhr = new XMLHttpRequest();
+        //
+        //     xhr.open('POST', "history?"+params, true);
+        //
+        //     xhr.onreadystatechange = (e) => {
+        //
+        //         const {target} = e;
+        //
+        //         if(target.readyState === XMLHttpRequest.DONE){
+        //             console.log(e);
+        //             console.log('시작');
+        //         }
+        //     }
+        //
+        //     xhr.send();
+        // }
+        //
+        //
+        // searchBtnEl.addEventListener('click', (e) => {
+        //     // e.preventDefault();
+        //     onSubmitHandler();
+        // })
 
 
 
 
-<%--    </script>--%>
+    </script>
 </body>
 </html>
