@@ -15,7 +15,9 @@ public class ConnManager {
             mariaDbPoolDataSource.setPassword(ConfigUtil.getDbConfig().getPassword());
             mariaDbPoolDataSource.setUrl(ConfigUtil.getDbConfig().getUrl());
 
-            try(Connection connection = mariaDbPoolDataSource.getConnection();
+            try(
+                    Connection connection = mariaDbPoolDataSource.getConnection();
+
             ) {
 
             } catch(Exception e){

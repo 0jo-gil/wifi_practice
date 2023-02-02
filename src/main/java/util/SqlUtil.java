@@ -20,4 +20,6 @@ public class SqlUtil {
 
     public static final String DELETE_WIFI_HISTORY = " delete from wifi_history " +
                                                     " where ID = ? ";
+
+    public static final String COUNT_WIFI_RESULT = " SELECT COUNT(*) FROM WIFI_RESULT ";
 }

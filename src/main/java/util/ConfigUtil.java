@@ -14,7 +14,4 @@ public class ConfigUtil {
     public static Api getApiConfig(){
         return yamlConfig.getApi();
     }
-
-    public static void main(String[] args) {
-    }
 }
