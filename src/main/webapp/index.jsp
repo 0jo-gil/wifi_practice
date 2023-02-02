@@ -62,10 +62,7 @@
                 <th>작업일자</th>
             </tr>
             </thead>
-
-
         </table>
-
     </div>
 
 
