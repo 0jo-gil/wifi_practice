@@ -1,12 +1,12 @@
 package config.dto;
 
-import lombok.NoArgsConstructor;
 
 public class Db {
     private String name;
     private String user;
     private String password;
     private String url;
+
 
     public Db() {
     }
@@ -50,16 +50,20 @@ public class Db {
         if (!other.canEqual((Object) this)) return false;
         final Object this$name = this.getName();
         final Object other$name = other.getName();
-        if (this$name == null ? other$name != null : !this$name.equals(other$name)) return false;
+        if (this$name == null ? other$name != null : !this$name.equals(other$name))
+            return false;
         final Object this$user = this.getUser();
         final Object other$user = other.getUser();
-        if (this$user == null ? other$user != null : !this$user.equals(other$user)) return false;
+        if (this$user == null ? other$user != null : !this$user.equals(other$user))
+            return false;
         final Object this$password = this.getPassword();
         final Object other$password = other.getPassword();
-        if (this$password == null ? other$password != null : !this$password.equals(other$password)) return false;
+        if (this$password == null ? other$password != null : !this$password.equals(other$password))
+            return false;
         final Object this$url = this.getUrl();
         final Object other$url = other.getUrl();
-        if (this$url == null ? other$url != null : !this$url.equals(other$url)) return false;
+        if (this$url == null ? other$url != null : !this$url.equals(other$url))
+            return false;
         return true;
     }
 

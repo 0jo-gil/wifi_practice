@@ -1,10 +1,11 @@
 package config;
 
+import config.dto.Api;
 import config.dto.Db;
-
 
 public class YamlConfig {
     private Db db;
+    private Api api;
 
     public YamlConfig() {
     }
@@ -13,8 +14,16 @@ public class YamlConfig {
         return this.db;
     }
 
+    public Api getApi() {
+        return this.api;
+    }
+
     public void setDb(Db db) {
         this.db = db;
+    }
+
+    public void setApi(Api api) {
+        this.api = api;
     }
 
     public boolean equals(final Object o) {
@@ -24,7 +33,12 @@ public class YamlConfig {
         if (!other.canEqual((Object) this)) return false;
         final Object this$db = this.getDb();
         final Object other$db = other.getDb();
-        if (this$db == null ? other$db != null : !this$db.equals(other$db)) return false;
+        if (this$db == null ? other$db != null : !this$db.equals(other$db))
+            return false;
+        final Object this$api = this.getApi();
+        final Object other$api = other.getApi();
+        if (this$api == null ? other$api != null : !this$api.equals(other$api))
+            return false;
         return true;
     }
 
@@ -37,10 +51,12 @@ public class YamlConfig {
         int result = 1;
         final Object $db = this.getDb();
         result = result * PRIME + ($db == null ? 43 : $db.hashCode());
+        final Object $api = this.getApi();
+        result = result * PRIME + ($api == null ? 43 : $api.hashCode());
         return result;
     }
 
     public String toString() {
-        return "YamlConfig(db=" + this.getDb() + ")";
+        return "YamlConfig(db=" + this.getDb() + ", api=" + this.getApi() + ")";
     }
 }
