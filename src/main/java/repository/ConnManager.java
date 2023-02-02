@@ -14,11 +14,13 @@ public class ConnManager {
             mariaDbPoolDataSource.setUser(ConfigUtil.getDbConfig().getUser());
             mariaDbPoolDataSource.setPassword(ConfigUtil.getDbConfig().getPassword());
             mariaDbPoolDataSource.setUrl(ConfigUtil.getDbConfig().getUrl());
-//
-//            try(Connection connection = mariaDbPoolDataSource.getConnection();
-//
-//
-//            )
+
+            try(Connection connection = mariaDbPoolDataSource.getConnection();
+            ) {
+
+            } catch(Exception e){
+                throw new RuntimeException(e);
+            }
         } catch (Exception e){
 
         }
