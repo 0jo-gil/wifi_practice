@@ -37,6 +37,7 @@ public class SqlUtil {
     public static final String SELECT_WIFI_HISTORY = " select * " +
                                                     " from wifi_history ";
 
+    public static final String DELETE_WIFI_RESULT = "delete from wifi_result";
     public static final String DELETE_WIFI_HISTORY = " delete from wifi_history " +
                                                     " where ID = ? ";
 

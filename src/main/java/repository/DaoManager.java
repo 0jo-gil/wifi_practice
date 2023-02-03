@@ -18,15 +18,12 @@ public class DaoManager {
         Gson gson = new Gson();
 
         List<WifiDto> result = Arrays.asList(gson.fromJson(wifiResultList, WifiDto[].class));
-//        System.out.println(wifiResultList);
-
 
         try(
                 Connection connection = ConnManager.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SqlUtil.INSERT_WIFI_RESULT)
                 ){
             for (WifiDto wifiDto : result){
-                int dataIndex = 0;
                 preparedStatement.setString(1, wifiDto.getX_SWIFI_MGR_NO());
                 preparedStatement.setString(2, wifiDto.getX_SWIFI_WRDOFC());
                 preparedStatement.setString(3, wifiDto.getX_SWIFI_MAIN_NM());
@@ -55,7 +52,6 @@ public class DaoManager {
             return -1;
         }
         return result.size();
-//        return wifiResultList.size();
     }
 
 

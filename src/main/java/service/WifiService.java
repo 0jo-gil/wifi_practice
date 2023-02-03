@@ -32,17 +32,17 @@ public class WifiService {
 
                 startNum += 1000;
                 endNum += 1000;
+
+                // 와이파이 리스트 DB 저장
+                JsonElement result = resJson.get(ConfigUtil.getApiConfig().getName()).getAsJsonObject().get("row");
+
+                daoManager.insertWifiResult(result);
             }
 
-            // 와이파이 리스트 DB 저장
-            JsonElement result = resJson.get(ConfigUtil.getApiConfig().getName()).getAsJsonObject().get("row");
-
-            System.out.println(daoManager.insertWifiResult(result));
 
             return resJson.get(ConfigUtil.getApiConfig().getName())
                     .getAsJsonObject().get("list_total_count").getAsInt();
         } catch (Exception e){
-            System.out.println(e);
             return -1;
         }
     }
@@ -59,12 +59,5 @@ public class WifiService {
             return null;
         }
     }
-
-//    public static void main(String[] args) {
-//        WifiService test = new WifiService();
-//
-//        System.out.println(test.requestInsertWifiResult());
-//
-//    }
 
 }
