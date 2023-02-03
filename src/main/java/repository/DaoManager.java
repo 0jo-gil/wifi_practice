@@ -18,6 +18,8 @@ public class DaoManager {
         Gson gson = new Gson();
 
         List<WifiDto> result = Arrays.asList(gson.fromJson(wifiResultList, WifiDto[].class));
+//        System.out.println(wifiResultList);
+
 
         try(
                 Connection connection = ConnManager.getConnection();
@@ -25,23 +27,22 @@ public class DaoManager {
                 ){
             for (WifiDto wifiDto : result){
                 int dataIndex = 0;
-
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_MGR_NO());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_WRDOFC());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_MAIN_NM());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_ADRES1());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_ADRES2());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_INSTL_FLOOR());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_INSTL_TY());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_INSTL_MBY());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_SVC_SE());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_CMCWR());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_CNSTC_YEAR());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_INOUT_DOOR());
-                preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_REMARS3());
-                preparedStatement.setString(dataIndex++, wifiDto.getLNT());
-                preparedStatement.setString(dataIndex++, wifiDto.getLAT());
-                preparedStatement.setString(dataIndex++, wifiDto.getWORK_DTTM());
+                preparedStatement.setString(1, wifiDto.getX_SWIFI_MGR_NO());
+                preparedStatement.setString(2, wifiDto.getX_SWIFI_WRDOFC());
+                preparedStatement.setString(3, wifiDto.getX_SWIFI_MAIN_NM());
+                preparedStatement.setString(4, wifiDto.getX_SWIFI_ADRES1());
+                preparedStatement.setString(5, wifiDto.getX_SWIFI_ADRES2());
+                preparedStatement.setString(6, wifiDto.getX_SWIFI_INSTL_FLOOR());
+                preparedStatement.setString(7, wifiDto.getX_SWIFI_INSTL_TY());
+                preparedStatement.setString(8, wifiDto.getX_SWIFI_INSTL_MBY());
+                preparedStatement.setString(9, wifiDto.getX_SWIFI_SVC_SE());
+                preparedStatement.setString(10, wifiDto.getX_SWIFI_CMCWR());
+                preparedStatement.setString(11, wifiDto.getX_SWIFI_CNSTC_YEAR());
+                preparedStatement.setString(12, wifiDto.getX_SWIFI_INOUT_DOOR());
+                preparedStatement.setString(13, wifiDto.getX_SWIFI_REMARS3());
+                preparedStatement.setDouble(14, Double.parseDouble(wifiDto.getLNT()));
+                preparedStatement.setDouble(15, Double.parseDouble(wifiDto.getLAT()));
+                preparedStatement.setString(16, wifiDto.getWORK_DTTM());
 
                 preparedStatement.addBatch();
                 preparedStatement.clearParameters();
@@ -49,6 +50,8 @@ public class DaoManager {
 
             preparedStatement.executeBatch();
         } catch (Exception e){
+
+            System.out.println(e);
             return -1;
         }
         return result.size();

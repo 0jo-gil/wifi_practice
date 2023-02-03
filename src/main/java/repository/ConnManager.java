@@ -2,6 +2,7 @@ package repository;
 
 import org.mariadb.jdbc.MariaDbPoolDataSource;
 import util.ConfigUtil;
+import util.SqlUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,9 +18,9 @@ public class ConnManager {
 
             try(
                     Connection connection = mariaDbPoolDataSource.getConnection();
-
+                    PreparedStatement wifiResultPreparedStatement = connection.prepareStatement(SqlUtil.CREATE_WIFI_RESULT);
             ) {
-
+                wifiResultPreparedStatement.executeUpdate();
             } catch(Exception e){
                 throw new RuntimeException(e);
             }

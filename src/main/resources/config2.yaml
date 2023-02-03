@@ -1,0 +1,11 @@
+db:
+  name: org.mariadb.jdbc.Driver
+  user: wifi
+  password: 0jo
+  url: jdbc:mariadb://172.30.1.19:3306/open_wifi
+api:
+  url: http://openapi.seoul.go.kr:8088
+  name: TbPublicWifiInfo
+  key: 4a43487157647564363443444c5748
+  type: json
+  encoding: UTF-8

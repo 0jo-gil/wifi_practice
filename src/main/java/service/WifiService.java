@@ -42,6 +42,7 @@ public class WifiService {
             return resJson.get(ConfigUtil.getApiConfig().getName())
                     .getAsJsonObject().get("list_total_count").getAsInt();
         } catch (Exception e){
+            System.out.println(e);
             return -1;
         }
     }
