@@ -24,14 +24,21 @@
 <script type="text/javascript">
     const submitReqWifiInfo = () => {
         const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'load-wifi');
+        xhr.open('GET', 'get-wifi-list');
 
         xhr.onreadystatechange = (e) => {
             const {target} = e;
 
             if(target.readyState === XMLHttpRequest.DONE){
-                console.log(e);
-                console.log('시작');
+                try{
+                    console.log(e);
+                    console.log('시작');
+
+                } catch (err){
+                    console.log("에러발생", e);
+                }
+            } else {
+                console.log("error")
             }
         }
 

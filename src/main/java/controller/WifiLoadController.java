@@ -5,16 +5,14 @@ import com.google.gson.Gson;
 import dto.WifiDto;
 import service.WifiService;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/wifi-search")
-public class WifiController extends HttpServlet {
+@WebServlet("/get-wifi-list")
+public class WifiLoadController extends HttpServlet {
     private final WifiService wifiService = new WifiService();
     public void init(){
         System.out.println("Wifi Controller Start!");

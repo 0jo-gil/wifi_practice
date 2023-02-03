@@ -114,17 +114,19 @@
             getLocation(e);
             loadingModal('사용자 위치정보');
         });
-        //
-        // const onSubmitHandler = () => {
-        //     const data = new FormData(locationInfoForm);
-        //
-        //     let latValue = data.get('lat');
-        //     let lntValue = data.get('lnt');
-        //
-        //     let params = "lat="+latValue+"&lnt="+lntValue;
-        //
-        //     callPostHistory(params);
-        // }
+
+        const onSubmitHandler = () => {
+            const data = new FormData(locationInfoForm);
+
+            let latValue = data.get('lat');
+            let lntValue = data.get('lnt');
+
+            let params = "lat="+latValue+"&lnt="+lntValue;
+
+            console.log(params);
+
+            // callPostHistory(params);
+        }
         //
         //
         // const callPostHistory = (params) => {
@@ -146,10 +148,10 @@
         // }
         //
         //
-        // searchBtnEl.addEventListener('click', (e) => {
-        //     // e.preventDefault();
-        //     onSubmitHandler();
-        // })
+        searchBtnEl.addEventListener('click', (e) => {
+            // e.preventDefault();
+            onSubmitHandler();
+        })
 
 
 

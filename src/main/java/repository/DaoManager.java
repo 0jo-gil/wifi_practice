@@ -1,5 +1,7 @@
 package repository;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import dto.WifiDto;
 import util.SqlUtil;
 
@@ -8,15 +10,20 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DaoManager {
-    public int insertWifiResult(List<WifiDto> wifiResultList){
+    public int insertWifiResult(JsonElement wifiResultList){
+        Gson gson = new Gson();
+
+        List<WifiDto> result = Arrays.asList(gson.fromJson(wifiResultList, WifiDto[].class));
+
         try(
                 Connection connection = ConnManager.getConnection();
                 PreparedStatement preparedStatement = connection.prepareStatement(SqlUtil.INSERT_WIFI_RESULT)
                 ){
-            for (WifiDto wifiDto : wifiResultList){
+            for (WifiDto wifiDto : result){
                 int dataIndex = 0;
 
                 preparedStatement.setString(dataIndex++, wifiDto.getX_SWIFI_MGR_NO());
@@ -44,9 +51,10 @@ public class DaoManager {
         } catch (Exception e){
             return -1;
         }
-
-        return wifiResultList.size();
+        return result.size();
+//        return wifiResultList.size();
     }
+
 
     public List<WifiDto> searchWifiListInDb(double LAT, double LNT, int itemCount){
         int dataIndex = 0;
