@@ -6,13 +6,14 @@
 <head>
     <title>와이파이 정보 구하기</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <link rel="stylesheet" href="./assets/style/style.css" />
 </head>
 <body>
 
 <div id="wrap">
     <div class="contents-wrap">
         <h1>
-            WIFI 정보를 정상적으로 저장하였습니다.
+
         </h1>
 
         <a href="index.jsp">홈으로 가기</a>
@@ -21,33 +22,26 @@
 
 </div>
 
+<script src="assets/js/index.js"></script>
 <script type="text/javascript">
-    const submitReqWifiInfo = () => {
-        const xhr = new XMLHttpRequest();
-        xhr.open('GET', 'get-wifi-list');
+    const textElement = document.querySelector('h1');
 
-        xhr.onreadystatechange = (e) => {
-            const {target} = e;
+    let params = {
+        url: 'save-wifi-list',
+        method: 'GET'
+    };
 
-            if(target.readyState === XMLHttpRequest.DONE){
-                try{
-                    console.log(e);
-                    console.log('시작');
-
-                } catch (err){
-                    console.log("에러발생", e);
-                }
-            } else {
-                console.log("error")
-            }
+    const callbackRequest = (e) => {
+        try{
+            let count = e.target.response;
+            textElement.innerHTML = `\${count}개의 WIFI 정보를 정상적으로 저장했습니다.`;
+        } catch (err){
+            textElement.innerHTML = `WIFI 정보 저장을 실패했습니다.`;
+            console.log("에러발생", e);
         }
-
-        xhr.send();
     }
 
-    // window.onload = () => {
-        submitReqWifiInfo();
-    // }
+    requestApi(params, callbackRequest, textElement);
 </script>
 </body>
 </html>

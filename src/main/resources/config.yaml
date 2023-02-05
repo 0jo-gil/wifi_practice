@@ -1,6 +1,6 @@
 db:
   name: org.mariadb.jdbc.Driver
-  user: user_user
+  user: user_wifi
   password: 0jo
   url: jdbc:mariadb://192.168.0.100:3306/open_wifi
 api:

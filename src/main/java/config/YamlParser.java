@@ -11,7 +11,7 @@ import java.util.Optional;
 public class YamlParser {
     private static final ObjectMapper objectMapper = new ObjectMapper(new YAMLFactory()).configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-    private static final InputStream configInputStream = YamlParser.class.getClassLoader().getResourceAsStream("config2.yaml");
+    private static final InputStream configInputStream = YamlParser.class.getClassLoader().getResourceAsStream("config.yaml");
 
     public static <T> Optional<T> getParsedCrawlerConfig(Class<T> crawlerClz) {
         try {

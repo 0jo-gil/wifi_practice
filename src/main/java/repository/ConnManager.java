@@ -19,8 +19,10 @@ public class ConnManager {
             try(
                     Connection connection = mariaDbPoolDataSource.getConnection();
                     PreparedStatement wifiResultPreparedStatement = connection.prepareStatement(SqlUtil.CREATE_WIFI_RESULT);
+                    PreparedStatement locationHistoryPreparedStatement = connection.prepareStatement(SqlUtil.CREATE_LOCATION_HISTORY);
             ) {
                 wifiResultPreparedStatement.executeUpdate();
+                locationHistoryPreparedStatement.executeUpdate();
             } catch(Exception e){
                 throw new RuntimeException(e);
             }

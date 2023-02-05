@@ -20,11 +20,13 @@ public class WifiService {
     public int requestInsertWifiResult(){
         int startNum = 1;
         int endNum = 1000;
+        int dataNum = -1;
 
         JsonObject resJson = null;
 
         try{
-            for (int i = 0; i < 15; i++)    {
+            daoManager.removeWifiList();
+            for (int i = 0; i < 20; i++)    {
                 String sendResult = RequestUtil.sendRequest(startNum, endNum);
 
                 resJson = (JsonObject) JsonParser.parseString(sendResult);
@@ -36,20 +38,16 @@ public class WifiService {
                 // 와이파이 리스트 DB 저장
                 JsonElement result = resJson.get(ConfigUtil.getApiConfig().getName()).getAsJsonObject().get("row");
 
-                daoManager.insertWifiResult(result);
+                dataNum = daoManager.insertWifiResult(result);
             }
 
-
-            return resJson.get(ConfigUtil.getApiConfig().getName())
-                    .getAsJsonObject().get("list_total_count").getAsInt();
+            return dataNum;
         } catch (Exception e){
-            return -1;
+            System.out.println(e);
+            return dataNum;
         }
     }
 
-    public static void main(String[] args) {
-        new WifiService().requestInsertWifiResult();
-    }
 
     public List<WifiDto> searchWifiListInDb (double LAT, double LNT, int itemCount){
         try{

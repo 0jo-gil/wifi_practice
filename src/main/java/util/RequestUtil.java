@@ -30,7 +30,4 @@ public class RequestUtil {
 
         return response.body().string();
     }
-//    public static void main(String[] args) throws IOException {
-//        System.out.println(sendRequest(1, 10));
-//    }
 }

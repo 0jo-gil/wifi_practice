@@ -44,73 +44,57 @@
 
 </div>
 
+<script src="assets/js/index.js"></script>
 <script type="text/javascript">
     const tbodyEl = document.querySelector('tbody');
 
-    const submitReqWifiInfo = () => {
-        const xhr = new XMLHttpRequest();
+    let params = {
+        url: 'location-history',
+        method: 'GET'
+    }
+    const callbackRequest = (e) => {
+        let result = JSON.parse(e.target.response);
         let element = '';
+        console.log(result);
 
-        xhr.open('GET', 'history');
-
-        xhr.onreadystatechange = (e) => {
-            const {target} = e;
-
-            if (target.readyState === XMLHttpRequest.DONE) {
-                let result = e.target?.response;
-
-                if (result) {
-                    result = JSON.parse(result);
-
-                    result.map((item) => {
-                        const {ID, LAT, LNT, SEARCH_DATE} = item;
-                        element += `
-                            <tr>
-                                <td>${'${ID}'}</td>
-                                <td>${'${LAT}'}</td>
-                                <td>${'${LNT}'}</td>
-                                <td>${'${SEARCH_DATE}'}</td>
-                                <td><button class="delete-btn" type="button" data-id="${'${ID}'}">삭제</button></td>
-                            </tr>
-                        `;
-                    })
-
-                    tbodyEl.insertAdjacentHTML('beforeend', element);
-                }
-            }
-        }
-
-        xhr.send();
+        result.map(item =>
+            element += `
+                <tr>
+                    <td>\${item.ID}</td>
+                    <td>\${item.LNT}</td>
+                    <td>\${item.LAT}</td>
+                    <td>\${item.SEARCH_DATE}</td>
+                    <td><button class="delete-btn" type="button" data-id="\${item.ID}">삭제</button></td>
+                </tr>
+            `
+        )
+        document.querySelector('table').insertAdjacentHTML('beforeend', element);
     }
 
-    const deleteSearchHistory = (e) => {
-        const xhr = new XMLHttpRequest();
-        let idVal = e.target.getAttribute("data-id");
+    requestApi(params, callbackRequest);
 
-        let params = "id="+idVal;
-        console.log(idVal);
-
-        xhr.open('POST', 'history_delete?'+params, true);
-
-        xhr.onreadystatechange = (e) => {
-            const {target} = e;
-
-            if(target.readyState === XMLHttpRequest.DONE){
-                console.log('삭제')
-            }
+    const callbackDeleteRequest = (e) => {
+        if(e.target.status === 200){
+            console.log(e.target)
+        } else {
+            alert('와이파이 위치 히스토리 목록 삭제 실패');
         }
-        xhr.send();
-
     }
 
 
 
     window.onload = () => {
-        submitReqWifiInfo();
-
         window.addEventListener('click', e => {
             if(e.target.className === 'delete-btn'){
-                deleteSearchHistory(e);
+                let idValue = e.target.getAttribute("data-id");
+                let deleteParams = {
+                    url: 'location-history?'+"id="+idValue,
+                    method: 'DELETE'
+                }
+
+                requestApi(deleteParams, callbackDeleteRequest)
+                    .then(() => e.target.closest('tr').remove())
+                    .catch((err) => console.error(err));
             }
         })
     }
