@@ -58,4 +58,13 @@ public class WifiService {
         }
     }
 
+    public List<WifiDto> searchWifiListDirect (double LAT, double LNT){
+        int startNum = 1;
+        int endNum = 1000;
+
+        JsonObject resJson = null;
+
+        return null;
+    }
+
 }

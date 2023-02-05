@@ -133,29 +133,8 @@
                 .then(() => requestApi(historyParams, callbackRequestHistory))
                 .catch((error) => console.error(error));
         }
-        //
-        //
-        // const callPostHistory = (params) => {
-        //     const xhr = new XMLHttpRequest();
-        //
-        //     xhr.open('POST', "history?"+params, true);
-        //
-        //     xhr.onreadystatechange = (e) => {
-        //
-        //         const {target} = e;
-        //
-        //         if(target.readyState === XMLHttpRequest.DONE){
-        //             console.log(e);
-        //             console.log('시작');
-        //         }
-        //     }
-        //
-        //     xhr.send();
-        // }
-        //
-        //
+
         searchBtnEl.addEventListener('click', (e) => {
-            // e.preventDefault();
             onSubmitHandler();
         })
 

@@ -151,6 +151,11 @@ public class DaoManager {
         }
     }
 
+    public List<WifiDto> searchWifiListDirect(double LAT, double LNT){
+
+        return null;
+    }
+
 
     public void insertLocationHistory(double LAT, double LNT){
         try(
