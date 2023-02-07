@@ -22,14 +22,19 @@ public class WifiLoadController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
-            Double LNT = Double.parseDouble(req.getParameter("lnt"));
-            Double LAT = Double.parseDouble(req.getParameter("lat"));
+        Double LNT = Double.parseDouble(req.getParameter("lnt"));
+        Double LAT = Double.parseDouble(req.getParameter("lat"));
 
-            List<WifiDto> wifiDtoList = wifiService.searchWifiListInDb(LAT, LNT, 0);
 
-            resp.setContentType("application/json");
-            resp.setCharacterEncoding("UTF-8");
-            resp.getWriter().print(new Gson().toJson(wifiDtoList));
+        List<WifiDto> wifiDtoList = wifiService.searchWifiListInDb(LAT, LNT, 0);
+
+        if(wifiDtoList.isEmpty()){
+           wifiDtoList = wifiService.searchWifiListDirect(LAT, LNT);
+        }
+
+        resp.setContentType("application/json");
+        resp.setCharacterEncoding("UTF-8");
+        resp.getWriter().print(new Gson().toJson(wifiDtoList));
     }
 
     public void destroy(){

@@ -2,7 +2,7 @@ db:
   name: org.mariadb.jdbc.Driver
   user: user_wifi
   password: 0jo
-  url: jdbc:mariadb://192.168.0.100:3306/open_wifi
+  url: jdbc:mariadb://192.168.0.101:3306/open_wifi
 api:
   url: http://openapi.seoul.go.kr:8088
   name: TbPublicWifiInfo

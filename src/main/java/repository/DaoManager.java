@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import dto.LocationDateDto;
 import dto.WifiDto;
+import util.DistanceUtil;
 import util.SqlUtil;
 
 import java.sql.Connection;
@@ -16,8 +17,9 @@ import java.util.List;
 import java.time.LocalDateTime;
 
 public class DaoManager {
+    private static Gson gson = new Gson();
+
     public int insertWifiResult(JsonElement wifiResultList){
-        Gson gson = new Gson();
 
         List<WifiDto> result = Arrays.asList(gson.fromJson(wifiResultList, WifiDto[].class));
 
@@ -102,7 +104,7 @@ public class DaoManager {
 
 
             while(rs.next()){
-                Double DISTANCE = rs.getDouble("DISTANCE");
+                Double DISTANCE = rs.getDouble("DISTANCE") / 1000;
                 String X_SWIFI_MGR_NO = rs.getString("X_SWIFI_MGR_NO");
                 String X_SWIFI_WRDOFC = rs.getString("X_SWIFI_WRDOFC");
                 String X_SWIFI_MAIN_NM = rs.getString("X_SWIFI_MAIN_NM");
@@ -123,7 +125,7 @@ public class DaoManager {
 
                 WifiDto dto = new WifiDto();
 
-                dto.setDISTANCE(Double.toString(DISTANCE));
+                dto.setDISTANCE(String.format("%.4f", DISTANCE));
                 dto.setX_SWIFI_MGR_NO(X_SWIFI_MGR_NO);
                 dto.setX_SWIFI_WRDOFC(X_SWIFI_WRDOFC);
                 dto.setX_SWIFI_MAIN_NM(X_SWIFI_MAIN_NM);
@@ -151,9 +153,56 @@ public class DaoManager {
         }
     }
 
-    public List<WifiDto> searchWifiListDirect(double LAT, double LNT){
+    public List<WifiDto> searchWifiListDirect(double LAT, double LNT, JsonElement wifiResultList){
+        List<WifiDto> wifiDtoList = new ArrayList<>();
+        List<WifiDto> result = Arrays.asList(gson.fromJson(wifiResultList, WifiDto[].class));
+        DistanceUtil distanceUtil = new DistanceUtil();
 
-        return null;
+        for (WifiDto wifiDto : result){
+            String X_SWIFI_MGR_NO = wifiDto.getX_SWIFI_MGR_NO();
+            String X_SWIFI_WRDOFC = wifiDto.getX_SWIFI_WRDOFC();
+            String X_SWIFI_MAIN_NM = wifiDto.getX_SWIFI_MAIN_NM();
+            String X_SWIFI_ADRES1 = wifiDto.getX_SWIFI_ADRES1();
+            String X_SWIFI_ADRES2 = wifiDto.getX_SWIFI_ADRES2();
+            String X_SWIFI_INSTL_FLOOR = wifiDto.getX_SWIFI_INSTL_FLOOR();
+            String X_SWIFI_INSTL_TY = wifiDto.getX_SWIFI_INSTL_TY();
+            String X_SWIFI_INSTL_MBY = wifiDto.getX_SWIFI_INSTL_MBY();
+            String X_SWIFI_SVC_SE = wifiDto.getX_SWIFI_SVC_SE();
+            String X_SWIFI_CMCWR = wifiDto.getX_SWIFI_CMCWR();
+            String X_SWIFI_CNSTC_YEAR = wifiDto.getX_SWIFI_CNSTC_YEAR();
+            String X_SWIFI_INOUT_DOOR = wifiDto.getX_SWIFI_INOUT_DOOR();
+            String X_SWIFI_REMARS3 = wifiDto.getX_SWIFI_REMARS3();
+            String LNTStr = wifiDto.getLNT();
+            String LATStr = wifiDto.getLAT();
+            String WORK_DTTM = wifiDto.getWORK_DTTM();
+
+            Double DISTANCE = Double.valueOf(distanceUtil.distance(LAT, LNT, Double.parseDouble(LNTStr), Double.parseDouble(LATStr)));
+
+
+            wifiDto.setDISTANCE(Double.toString(DISTANCE));
+            wifiDto.setX_SWIFI_MGR_NO(X_SWIFI_MGR_NO);
+            wifiDto.setX_SWIFI_WRDOFC(X_SWIFI_WRDOFC);
+            wifiDto.setX_SWIFI_MAIN_NM(X_SWIFI_MAIN_NM);
+            wifiDto.setX_SWIFI_ADRES1(X_SWIFI_ADRES1);
+            wifiDto.setX_SWIFI_ADRES2(X_SWIFI_ADRES2);
+            wifiDto.setX_SWIFI_INSTL_FLOOR(X_SWIFI_INSTL_FLOOR);
+            wifiDto.setX_SWIFI_INSTL_TY(X_SWIFI_INSTL_TY);
+            wifiDto.setX_SWIFI_INSTL_MBY(X_SWIFI_INSTL_MBY);
+            wifiDto.setX_SWIFI_SVC_SE(X_SWIFI_SVC_SE);
+            wifiDto.setX_SWIFI_CMCWR(X_SWIFI_CMCWR);
+            wifiDto.setX_SWIFI_CNSTC_YEAR(X_SWIFI_CNSTC_YEAR);
+            wifiDto.setX_SWIFI_INOUT_DOOR(X_SWIFI_INOUT_DOOR);
+            wifiDto.setX_SWIFI_REMARS3(X_SWIFI_REMARS3);
+            wifiDto.setLNT(LNTStr);
+            wifiDto.setLAT(LATStr);
+            wifiDto.setWORK_DTTM(WORK_DTTM);
+
+            wifiDtoList.add(wifiDto);
+        }
+
+
+
+        return wifiDtoList;
     }
 
 

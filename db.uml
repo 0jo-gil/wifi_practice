@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>DATABASE</ID>
+  <OriginalElement>0458b8dc-584f-45e3-9d93-51b1b1c530ac.TABLE:open_wifi.wifi_history</OriginalElement>
+  <nodes>
+    <node x="-137.0" y="-192.0">0458b8dc-584f-45e3-9d93-51b1b1c530ac.TABLE:open_wifi.wifi_result</node>
+    <node x="189.94730686180424" y="-192.0">0458b8dc-584f-45e3-9d93-51b1b1c530ac.TABLE:open_wifi.wifi_history</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="계층" zoom="1.0" showDependencies="false" x="132.50000000000006" y="10.999999999999943" />
+  <SelectedNodes />
+  <Categories>
+    <Category>열</Category>
+    <Category>키 열</Category>
+  </Categories>
+</Diagram>
+
