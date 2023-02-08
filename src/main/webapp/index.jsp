@@ -23,15 +23,16 @@
         <form class="location-info-form" action="/history" method="POST">
             <fieldset>
                 <legend>공공와이 파이 위치정보 입력 폼</legend>
-                <div class="form-item">
-                    <label for="lat">LAT: </label>
-                    <input type="text" name="lat" id="lat"/>
+                <div class="input-wrap">
+                    <div class="form-item">
+                        <label for="lat">LAT: </label>
+                        <input type="text" name="lat" id="lat"/>
+                    </div>
+                    <div class="form-item">
+                        <label for="lnt">LNT: </label>
+                        <input type="text" name="lnt" id="lnt"/>
+                    </div>
                 </div>
-                <div class="form-item">
-                    <label for="lnt">LNT: </label>
-                    <input type="text" name="lnt" id="lnt"/>
-                </div>
-
                 <button type="button" class="form-btn location-btn">내 위치정보 가져오기</button>
                 <button type="button" class="form-btn search-btn">근처 WIFI정보 보기</button>
 

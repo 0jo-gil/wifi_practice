@@ -6,6 +6,19 @@
 ol,ul{
     list-style: none;
 }
+a{
+    text-decoration: none;
+    color: #000;
+}
+a:hover{
+    color: #aaa;
+}
+button{
+    border: none;
+    background: none;
+    border: 1px solid #000;
+    cursor: pointer;
+}
 
 
 #wrap{
@@ -28,4 +41,71 @@ ol,ul{
 .modal-wrap h1{
     font-size: 30px;
     color: #fff;
+}
+
+.title{
+    margin-bottom: 20px;
+}
+
+.gnb-wrap{
+    margin-bottom: 20px;
+}
+.gnb {
+    display: flex;
+    gap: 20px;
+}
+
+.load-wifi-wrap h1{
+    text-align: center;
+    margin-bottom: 40px;
+}
+.load-wifi-wrap a{
+    display: block;
+    text-align: center;
+}
+
+/* form */
+form{
+    margin-bottom: 40px;
+}
+fieldset{
+    border: none;
+}
+
+legend{
+    text-indent: -9999px;
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+.input-wrap{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.form-btn{
+    padding: 10px;
+    background: #ddd;
+}
+
+/* table */
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table tr:nth-of-type(even){
+    background: #aaa;
+}
+table th{
+    background: #999;
+    padding: 10px;
+    font-size: 14px;
+}
+table td{
+    font-size: 14px;
+    text-align: center;
+    padding: 10px 0;
 }

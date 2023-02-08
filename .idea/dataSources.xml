@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="open_wifi@192.168.0.101" uuid="0458b8dc-584f-45e3-9d93-51b1b1c530ac">
+    <data-source source="LOCAL" name="open_wifi@192.168.0.100" uuid="0458b8dc-584f-45e3-9d93-51b1b1c530ac">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>

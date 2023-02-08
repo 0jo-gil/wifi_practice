@@ -10,11 +10,9 @@
 </head>
 <body>
 
-<div id="wrap">
+<div id="wrap" class="load-wifi-wrap">
     <div class="contents-wrap">
-        <h1>
-
-        </h1>
+        <h1>LOADING...</h1>
 
         <a href="index.jsp">홈으로 가기</a>
 
